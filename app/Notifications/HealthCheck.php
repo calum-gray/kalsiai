@@ -25,14 +25,19 @@ class HealthCheck extends Notification
 
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
-            ->subject('New Contact from ' . $this->data['name'])
-            ->greeting('New Enquiry for KalsiAI')
-            ->line("Name: {$this->data['name']}")
-            ->line("Email: {$this->data['email']}")
-            ->line("Message: {$this->data['message']}")
-            ->action('Reply Now: ', 'mailto:'. $this->data['email']);
+        $answers = json_decode($this->data['answers'] ?? '{}', true) ?? [];
 
+        $message = (new MailMessage)
+            ->subject('New AI Health Check submission')
+            ->greeting('New health check via KalsiAI')
+            ->line("Name: {$this->data['name']}")
+            ->line("Email: {$this->data['email']}");
+
+        foreach ($answers as $questionId => $value) {
+            $message->line("{$questionId}: {$value}");
+        }
+
+        return $message->action('Reply now', 'mailto:' . $this->data['email']);
     }
 
     public function toArray(object $notifiable): array

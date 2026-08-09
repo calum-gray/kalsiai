@@ -183,6 +183,11 @@
     transform: translateY(-2px);
 }
 
+.btn-lg {
+    padding: 1.1rem 2.5rem;
+    font-size: var(--text-lg);
+}
+
 /* ==========================================================================
    Hero
    ========================================================================== */
@@ -433,10 +438,11 @@
     text-align: left;
 }
 
-.contact-form button,
-.health-check-form button {
-    align-self: center;
-    margin-top: var(--space-sm);
+.contact-form .btn,
+.health-check-form .btn {
+    display: block;
+    width: fit-content;
+    margin: var(--space-sm) auto 0;
 }
 
 label {
@@ -468,4 +474,132 @@ textarea:focus {
     padding: var(--space-sm) var(--space-md);
     color: var(--color-forest-700);
     font-weight: 600;
+}
+
+/* ==========================================================================
+   AI Health Check survey
+   ========================================================================== */
+
+.hc-step {
+    transition: opacity var(--transition-medium), transform var(--transition-medium);
+}
+
+.hc-step[hidden] {
+    display: none;
+}
+
+/*
+  html.js prefix here isn't for progressive enhancement (these classes are
+  only ever added by JS anyway) — it's to guarantee these win specificity
+  over the scroll-reveal rule in base.css, since #hc-intro matches both
+  systems (it's a <section> AND a .hc-step).
+*/
+html.js .hc-step.hc-fade-init {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+html.js .hc-step.hc-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html.js .hc-step.hc-fade-out {
+    opacity: 0;
+    transform: translateY(-12px);
+}
+
+.hc-progress {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto var(--space-sm);
+    height: 10px;
+    border-radius: var(--radius-pill);
+    background: var(--color-beige-500);
+    border: 1px solid var(--color-forest-900);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.hc-progress[hidden] {
+    display: none;
+}
+
+.hc-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--color-forest-500);
+    transition: width var(--transition-medium);
+}
+
+.hc-progress-label {
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-xs);
+    color: var(--color-forest-700);
+    margin: 0 0 var(--space-md);
+}
+
+.hc-question-text {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.hc-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.hc-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    background: var(--color-beige-300);
+    color: var(--color-forest-900);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    text-align: left;
+    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hc-option-label {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 600;
+}
+
+.hc-option-description {
+    font-size: var(--text-xs);
+    opacity: 0.75;
+    margin-top: 2px;
+}
+
+.hc-option:hover,
+.hc-option:focus-visible {
+    background: var(--color-forest-500);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+.hc-results-text {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    text-align: center;
+}
+
+.hc-results-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 360px;
+    margin: var(--space-md) auto 0;
+    text-align: left;
 }
