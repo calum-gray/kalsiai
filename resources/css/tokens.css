@@ -1,0 +1,51 @@
+/*
+  Design tokens — edit values here to reskin the whole site.
+  Nothing below this file should ever contain a raw hex code.
+*/
+:root {
+    /* Color: forest & beige system */
+    --color-forest-900: #0F2317; /* deepest — nav, footer, hero base */
+    --color-forest-700: #1B3B29; /* mid — gradient end, dark card fills */
+    --color-forest-500: #2E5940; /* accent green — hover, links, focus */
+    --color-forest-300: #4C7A5C; /* lightest green — used sparingly */
+
+    --color-beige-100: #FAF6EC; /* page background (light sections) */
+    --color-beige-300: #EFE3C8; /* secondary — card fills, buttons */
+    --color-beige-500: #D9C9A0; /* deeper beige — borders, dividers */
+
+    --color-white: #FFFFFF;     /* accent only — never a large fill */
+    --color-ink:   #17231C;     /* body text on light backgrounds */
+
+    /* Type */
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
+
+    --text-xs: 0.8125rem;
+    --text-sm: 0.9375rem;
+    --text-base: 1.0625rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.75rem;
+    --text-2xl: 2.25rem;
+    --text-3xl: clamp(2.25rem, 5vw, 3.75rem);
+
+    /* Spacing scale */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: 6rem;
+
+    /* Shape — the "rounded box" language */
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+    --shadow-soft: 0 20px 40px -20px rgba(15, 35, 23, 0.35);
+
+    /* Signature gradient */
+    --gradient-forest: linear-gradient(160deg, var(--color-forest-900) 0%, var(--color-forest-700) 65%, var(--color-forest-500) 100%);
+
+    /* Motion */
+    --transition-fast: 180ms ease;
+    --transition-medium: 450ms ease;
+}

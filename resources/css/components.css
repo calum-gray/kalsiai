@@ -1,0 +1,471 @@
+/* ==========================================================================
+   Nav
+   ========================================================================== */
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--color-forest-900);
+    animation: navFadeIn 700ms ease both;
+}
+
+@keyframes navFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.logo img {
+    height: 32px;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: var(--space-xs);
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.site-nav a {
+    position: relative;
+    color: var(--color-beige-300);
+    font-size: var(--text-sm);
+    padding: var(--space-xs) 0;
+    transition: color var(--transition-fast);
+}
+
+.site-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: var(--color-white);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-fast);
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+    color: var(--color-white);
+}
+
+.site-nav a:hover::after,
+.site-nav a.active::after {
+    transform: scaleX(1);
+}
+
+.site-nav a.cta {
+    background: var(--color-beige-300);
+    color: var(--color-forest-900);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.site-nav a.cta::after {
+    display: none;
+}
+
+.site-nav a.cta:hover {
+    background: var(--color-white);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+        background: var(--color-forest-900);
+        padding: var(--space-md) var(--space-lg) var(--space-lg);
+        z-index: 20;
+    }
+
+    .site-nav.is-open {
+        display: flex;
+    }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+    background: var(--color-forest-900);
+    color: var(--color-beige-300);
+    text-align: center;
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+.footer-links a {
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--color-white);
+}
+
+.footer-contact a {
+    color: var(--color-white);
+}
+
+.footer-meta {
+    margin-top: var(--space-sm);
+    font-size: var(--text-xs);
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    border: 2px solid transparent;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-primary {
+    background: var(--color-beige-300);
+    color: var(--color-forest-900);
+}
+
+.btn-primary:hover {
+    background: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-white);
+    border-color: var(--color-beige-300);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+    max-width: none;
+    background: var(--gradient-forest);
+    color: var(--color-white);
+    text-align: center;
+    padding: clamp(3rem, 10vw, 6rem) clamp(1rem, 4vw, 1.5rem);
+}
+
+.hero h1 {
+    color: var(--color-white);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-subtext {
+    color: var(--color-beige-300);
+    max-width: 560px;
+    margin: 0 auto var(--space-lg);
+    font-size: var(--text-lg);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Info boxes ("What KalsiAI does")
+   ========================================================================== */
+
+.info-box-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.info-box {
+    background: var(--color-beige-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-fast);
+}
+
+.info-box:hover {
+    transform: translateY(-4px);
+}
+
+.info-box-title {
+    color: var(--color-forest-700);
+    margin-bottom: var(--space-xs);
+}
+
+.info-box-description {
+    margin: 0;
+    font-size: var(--text-sm);
+}
+
+/* ==========================================================================
+   Steps ("How it works") — the signature ghost-numeral treatment
+   ========================================================================== */
+
+.step-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.step {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-forest-700);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: transform var(--transition-fast);
+}
+
+.step:hover {
+    transform: translateY(-4px);
+}
+
+.step-number {
+    position: absolute;
+    top: -0.75rem;
+    right: 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 5.5rem);
+    font-weight: 700;
+    color: var(--color-beige-300);
+    opacity: 0.65;
+    line-height: 1;
+}
+
+.step-title {
+    position: relative;
+    color: var(--color-beige-300);
+}
+
+.step-description {
+    position: relative;
+    margin: 0;
+    font-size: var(--text-sm);
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   CTA banner
+   ========================================================================== */
+
+.cta-banner {
+    max-width: 1100px;
+    margin: clamp(3rem, 8vw, 6rem) auto;
+    background: var(--gradient-forest);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 1.5rem);
+}
+
+.cta-banner h2 {
+    color: var(--color-white);
+}
+
+.cta-banner p {
+    color: var(--color-beige-300);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-item {
+    background: var(--color-beige-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-sm);
+    text-align: left;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-forest-700);
+}
+
+.faq-answer {
+    margin-top: var(--space-xs);
+    font-size: var(--text-sm);
+}
+
+/* ==========================================================================
+   Pricing (Services page)
+   ========================================================================== */
+
+.pricing-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.pricing-item {
+    background: var(--color-beige-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.pricing-item .price {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--color-forest-700);
+    margin-top: var(--space-xs);
+}
+
+/* ==========================================================================
+   Trust list
+   ========================================================================== */
+
+.trust-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+}
+
+.trust-list li {
+    background: var(--color-forest-900);
+    color: var(--color-beige-300);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sm);
+}
+
+/* ==========================================================================
+   Case study blocks
+   ========================================================================== */
+
+.case-study-block {
+    background: var(--color-beige-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+.case-study-block h3 {
+    color: var(--color-forest-700);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-xs);
+}
+
+.link-arrow {
+    display: inline-block;
+    color: var(--color-forest-500);
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+.link-arrow:hover {
+    color: var(--color-forest-700);
+}
+
+/* ==========================================================================
+   Forms (contact + health check)
+   ========================================================================== */
+
+.contact-form,
+.health-check-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 480px;
+    margin: var(--space-md) auto 0;
+    text-align: left;
+}
+
+.contact-form button,
+.health-check-form button {
+    align-self: center;
+    margin-top: var(--space-sm);
+}
+
+label {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    margin-top: var(--space-xs);
+}
+
+input,
+textarea {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-beige-500);
+    background: var(--color-white);
+    color: var(--color-ink);
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--color-forest-500);
+    outline-offset: 2px;
+}
+
+.form-success {
+    background: var(--color-beige-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--color-forest-700);
+    font-weight: 600;
+}
