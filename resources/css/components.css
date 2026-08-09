@@ -536,7 +536,7 @@ html.js .hc-step.hc-fade-out {
     text-align: center;
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: var(--text-xs);
+    font-size: var(--text-xl);
     color: var(--color-forest-700);
     margin: 0 0 var(--space-md);
 }

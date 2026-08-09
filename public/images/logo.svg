@@ -1,0 +1,14 @@
+<svg viewBox="0 0 240 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KalsiAI logo">
+  <!-- Circuit-node accent, echoing the original mark's tech motif -->
+  <g fill="none" stroke="#EFE3C8" stroke-width="1.6" stroke-linecap="round" opacity="0.8">
+    <path d="M6 12 H18 V22 H28 V30" />
+  </g>
+  <circle cx="6" cy="12" r="2.4" fill="#EFE3C8" />
+  <circle cx="18" cy="22" r="3" fill="#EFE3C8" />
+  <circle cx="28" cy="30" r="3.6" fill="#FFFFFF" />
+
+  <!-- Wordmark -->
+  <text x="42" y="40" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="32">
+    <tspan fill="#EFE3C8">Kalsi</tspan><tspan fill="#FFFFFF">AI</tspan>
+  </text>
+</svg>
