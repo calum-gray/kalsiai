@@ -2,20 +2,20 @@
 
 namespace App\Notifications;
 
+use App\Models\ContactForm;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ContactForm extends Notification
+class ContactFormNotification extends Notification
 {
     use Queueable;
 
-    protected array $data = [];
+    protected ContactForm $submission;
 
-    public function __construct(array $data)
+    public function __construct(ContactForm $submission)
     {
-        $this->data = $data;
+        $this->submission = $submission;
     }
 
     public function via(object $notifiable): array
@@ -26,12 +26,12 @@ class ContactForm extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New Contact from ' . $this->data['name'])
+            ->subject('New Contact from ' . $this->submission->name)
             ->greeting('New Enquiry for KalsiAI')
-            ->line("Name: {$this->data['name']}")
-            ->line("Email: {$this->data['email']}")
-            ->line("Message: {$this->data['message']}")
-            ->action('Reply Now: ', 'mailto:'. $this->data['email']);
+            ->line("Name: ". $this->submission->name)
+            ->line("Email: " . $this->submission->email)
+            ->line("Message: ". $this->submission->message)
+            ->action('Reply Now: ', 'mailto:'. $this->submission->email);
 
     }
 

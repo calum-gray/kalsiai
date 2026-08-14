@@ -2,20 +2,20 @@
 
 namespace App\Notifications;
 
+use App\Models\HealthCheck;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class HealthCheck extends Notification
+class HealthCheckNotification extends Notification
 {
     use Queueable;
 
-    protected array $data = [];
+    protected HealthCheck $submission;
 
-    public function __construct(array $data)
+    public function __construct(HealthCheck $submission)
     {
-        $this->data = $data;
+        $this->submission = $submission;
     }
 
     public function via(object $notifiable): array
@@ -25,19 +25,17 @@ class HealthCheck extends Notification
 
     public function toMail(object $notifiable): MailMessage
     {
-        $answers = json_decode($this->data['answers'] ?? '{}', true) ?? [];
-
         $message = (new MailMessage)
             ->subject('New AI Health Check submission')
             ->greeting('New health check via KalsiAI')
-            ->line("Name: {$this->data['name']}")
-            ->line("Email: {$this->data['email']}");
+            ->line("Name: ". $this->submission->name)
+            ->line("Email: ". $this->submission->email);
 
-        foreach ($answers as $questionId => $value) {
+        foreach ($this->submission->answers as $questionId => $value) {
             $message->line("{$questionId}: {$value}");
         }
 
-        return $message->action('Reply now', 'mailto:' . $this->data['email']);
+        return $message->action('Reply now', 'mailto:' . $this->submission->email);
     }
 
     public function toArray(object $notifiable): array

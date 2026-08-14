@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\HealthCheck;
+use App\Http\Requests\HealthCheckRequest;
+use App\Models\HealthCheck;
+use App\Notifications\HealthCheckNotification;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Notification;
 
 class HealthCheckController extends Controller
 {
-    public function submit(Request $request): RedirectResponse
+    public function submit(HealthCheckRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'answers' => 'required|json',
-        ]);
+        $submission = HealthCheck::create($request->validated());
 
         Notification::route('mail', config('mail.admin_email'))
-            ->notify(new HealthCheck($validated));
+            ->notify(new HealthCheckNotification($submission));
 
         return back()->with('success', 'Thanks - your results will be with you shortly');
     }
