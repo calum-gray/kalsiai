@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\ContactForm;
+use App\Notifications\ContactFormNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\View\View;
 
 class ContactController extends Controller
 {
@@ -20,7 +19,7 @@ class ContactController extends Controller
         ]);
 
         Notification::route('mail', config('mail.admin_email'))
-            ->notify(new ContactForm($validated));
+            ->notify(new ContactFormNotification($validated));
 
         return back()->with('success', 'Thanks for contacting us!');
     }
