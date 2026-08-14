@@ -11,9 +11,5 @@ class ContactForm extends Model
 
     protected $table = 'contact_form';
 
-    protected $fillable = ['name', 'email', 'answers'];
-
-    protected $casts = [
-        'answers' => 'array',
-    ];
+    protected $fillable = ['name', 'email', 'message'];
 }
